@@ -14,14 +14,32 @@
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
+            <th scope="col">Number</th>
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Button</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="product: ${products}">
+            <td th:text="${product.productId}"></td>
             <td th:text="${product.productName}"></td>
             <td th:text="${product.productQuantity}"></td>
+            <!-- Hanya menggunakan tautan -->
+            <td>
+
+                <a th:href="@{'/product/delete/' + ${product.productName}}"
+                   class="btn btn-danger"
+                   onclick="return confirm('Apakah Anda yakin ingin menghapus?');">Delete</a>
+<!--                <form th:action="@{/product/delete/{productName}(productName=${product.productName})}" method="delete">-->
+<!--                    <input type="hidden" name="_method" value="DELETE">-->
+<!--                    <button type="submit" class="btn btn-danger"  onclick="return confirm('Apakah Anda yakin ingin menghapus?');">Hapus</button>-->
+<!--                </form>-->
+
+            </td>
+
+
+
         </tr>
         </tbody>
     </table>

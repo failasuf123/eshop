@@ -27,4 +27,25 @@ public class ProductServiceImpl implements ProductService {
         productIterator.forEachRemaining(allProduct::add);
         return  allProduct;
     }
+
+    @Override
+    public Product findById(String productId) {
+        // Implementasi untuk mencari produk berdasarkan ID
+        // ...
+
+        return null;
+    }
+
+    @Override
+    public void delete(String productName) {
+        productRepository.delete(productName);
+    }
+
+    @Override
+    public Product update(String productId, Product updatedProduct) {
+        // Implementasi untuk memperbarui produk berdasarkan ID
+        // ...
+
+        return updatedProduct;
+    }
 }

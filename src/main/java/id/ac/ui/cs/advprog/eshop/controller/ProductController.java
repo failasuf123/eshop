@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class ProductController{
     public String createProductPage(Model model){
         Product product = new Product();
         model.addAttribute("product", product);
-        return "createProduct";
+        return "CreateProduct";
     }
 
     @PostMapping("/create")
@@ -34,4 +36,30 @@ public class ProductController{
         model.addAttribute("products", allProducts);
         return "productList";
     }
+
+    @DeleteMapping("/delete/{productName}")
+    public void delete(@PathVariable("productName") String productName) {
+        service.delete(productName);
+    }
+
+//    @GetMapping("/delete/{id}")
+//    public String deleteUser(@PathVariable("id") long id, Model model) {
+//        User user = userRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+//        userRepository.delete(user);
+//        return "redirect:/index";
+//    }
+
+//    @DeleteMapping("/delete/{productName}")
+//    public ResponseEntity<Void> deleteProduct(@PathVariable String productName) {
+//        service.delete(productName);
+//        return ResponseEntity.noContent().build();
+//    }
+
+
+
+
+
+
+
 }
