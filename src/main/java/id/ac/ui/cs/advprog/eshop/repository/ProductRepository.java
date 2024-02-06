@@ -21,7 +21,36 @@ public class ProductRepository {
         return productData.iterator();
     }
 
+    public Product findById(String productId) {
+        for (Product product : productData) {
+            if (product.getProductId().equals(productId)) {
+                return product;
+            }
+        }
+        return null; // Produk tidak ditemukan
+    }
+
+
     public void delete(String productName) {
         productData.removeIf(product -> product.getProductName().equals(productName));
     }
+
+
+
+    public Product updateProduct(String productName, Product updatedProduct) {
+        for (int i = 0; i < productData.size(); i++) {
+            if (productData.get(i).getProductName().equals(productName)) {
+                // Temukan produk yang akan diperbarui dan perbarui propertinya
+                Product existingProduct = productData.get(i);
+                existingProduct.setProductName(updatedProduct.getProductName());
+                existingProduct.setProductQuantity(updatedProduct.getProductQuantity());
+
+                return existingProduct;
+            }
+        }
+
+        // Jika produk tidak ditemukan, Anda bisa melempar exception atau mengembalikan null
+        return null;
+    }
+
 }

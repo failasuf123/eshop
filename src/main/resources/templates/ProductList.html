@@ -27,14 +27,12 @@
             <td th:text="${product.productQuantity}"></td>
             <!-- Hanya menggunakan tautan -->
             <td>
-
                 <a th:href="@{'/product/delete/' + ${product.productName}}"
                    class="btn btn-danger"
-                   onclick="return confirm('Apakah Anda yakin ingin menghapus?');">Delete</a>
-<!--                <form th:action="@{/product/delete/{productName}(productName=${product.productName})}" method="delete">-->
-<!--                    <input type="hidden" name="_method" value="DELETE">-->
-<!--                    <button type="submit" class="btn btn-danger"  onclick="return confirm('Apakah Anda yakin ingin menghapus?');">Hapus</button>-->
-<!--                </form>-->
+                   onclick="event.preventDefault();
+             const request = new XMLHttpRequest();
+             request.open('DELETE', this.href);
+             request.send();">Delete</a>
 
             </td>
 

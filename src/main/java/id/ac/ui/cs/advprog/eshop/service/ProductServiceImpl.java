@@ -30,10 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(String productId) {
-        // Implementasi untuk mencari produk berdasarkan ID
-        // ...
-
-        return null;
+        return productRepository.findById(productId);
     }
 
     @Override
@@ -42,10 +39,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product update(String productId, Product updatedProduct) {
-        // Implementasi untuk memperbarui produk berdasarkan ID
-        // ...
-
-        return updatedProduct;
+    public Product update(String productName, Product updatedProduct) {
+        return productRepository.updateProduct(productName, updatedProduct);
     }
 }
