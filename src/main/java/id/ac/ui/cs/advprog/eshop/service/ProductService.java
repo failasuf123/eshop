@@ -10,7 +10,7 @@ public interface ProductService {
 
 
 
-    public Product findById(String productId);
+    public Product findByName(String productId);
 
     public void delete(String productName);
 

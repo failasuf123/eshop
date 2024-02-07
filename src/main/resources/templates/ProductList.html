@@ -14,7 +14,6 @@
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
-            <th scope="col">Number</th>
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
             <th scope="col">Button</th>
@@ -22,7 +21,6 @@
         </thead>
         <tbody>
         <tr th:each="product: ${products}">
-            <td th:text="${product.productId}"></td>
             <td th:text="${product.productName}"></td>
             <td th:text="${product.productQuantity}"></td>
             <!-- Hanya menggunakan tautan -->
@@ -33,6 +31,9 @@
              const request = new XMLHttpRequest();
              request.open('DELETE', this.href);
              request.send();">Delete</a>
+
+                <a th:href="@{'/product/edit/' + ${product.productName}}"
+                   class="btn btn-primary">Edit</a>
 
             </td>
 

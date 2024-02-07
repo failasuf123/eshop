@@ -39,54 +39,33 @@ public class ProductController{
 
     @DeleteMapping("/delete/{productName}")
     public void delete(@PathVariable("productName") String productName) {
+        performAdditionalAction(productName);
         service.delete(productName);
+
     }
 
-//    @GetMapping("/delete/{id}")
-//    public String deleteUser(@PathVariable("id") long id, Model model) {
-//        Product product = productRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-//        userRepository.delete(user);
-//        return "redirect:/index";
-//    }
-
-//    @DeleteMapping("/delete/{productName}")
-//    public ResponseEntity<Void> deleteProduct(@PathVariable String productName) {
-//        service.delete(productName);
-//        return ResponseEntity.noContent().build();
-//    }
-
-
-//    @GetMapping("/edit/{id}")
-//    public String showUpdateForm(@PathVariable("id") long id, Model model) {
-//        User user = userRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-//
-//        model.addAttribute("user", user);
-//        return "update-user";
-//    }
+    private void performAdditionalAction(String productName) {
+        // Implementasikan tindakan tambahan di sini
+        // Misalnya, log, kirim notifikasi, atau tindakan lainnya
+        System.out.println("Product with name " + productName + " has been deleted.");
+    }
 
     @GetMapping("/edit/{productName}")
     public String editProductPage(@PathVariable String productName, Model model) {
-        // Temukan produk berdasarkan nama
-        Product product = service.findById(productName);
+        Product product = service.findByName(productName);
 
-        // Periksa apakah produk ditemukan
         if (product != null) {
             model.addAttribute("product", product);
             return "EditProduct";
         } else {
-            // Produk tidak ditemukan, atur pesan kesalahan atau alihkan ke halaman lain
             return "redirect:/product/list";
         }
     }
 
     @PostMapping("/edit/{productName}")
     public String editProductPost(@PathVariable String productName, @ModelAttribute Product updatedProduct) {
-        // Implementasikan logika pembaruan produk
         service.update(productName, updatedProduct);
 
-        // Redirect ke halaman daftar produk setelah pembaruan
         return "redirect:/product/list";
     }
 }

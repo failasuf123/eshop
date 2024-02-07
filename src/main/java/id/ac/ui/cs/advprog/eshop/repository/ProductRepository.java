@@ -21,13 +21,13 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public Product findById(String productId) {
+    public Product findByName(String productName) {
         for (Product product : productData) {
-            if (product.getProductId().equals(productId)) {
+            if (product.getProductName().equals(productName)) {
                 return product;
             }
         }
-        return null; // Produk tidak ditemukan
+        return null;
     }
 
 
