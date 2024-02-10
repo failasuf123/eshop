@@ -16,12 +16,29 @@
         <tr>
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Button</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="product: ${products}">
             <td th:text="${product.productName}"></td>
             <td th:text="${product.productQuantity}"></td>
+            <!-- Hanya menggunakan tautan -->
+            <td>
+                <a th:href="@{'/product/delete/' + ${product.productName}}"
+                   class="btn btn-danger"
+                   onclick="event.preventDefault();
+             const request = new XMLHttpRequest();
+             request.open('DELETE', this.href);
+             request.send();">Delete</a>
+
+                <a th:href="@{'/product/edit/' + ${product.productName}}"
+                   class="btn btn-primary">Edit</a>
+
+            </td>
+
+
+
         </tr>
         </tbody>
     </table>
