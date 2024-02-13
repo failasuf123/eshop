@@ -11,10 +11,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v1
+        uses: sonarsource/sonarcloud-github-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.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}}
+          SONAR_TOKEN: ${{ secrets.adproasik }}
         with:
           organization: 'failasuf123'
-          token: ${{ secrets.adproasik }}
