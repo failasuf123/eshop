@@ -40,7 +40,6 @@ public class ProductRepository {
     public Product updateProduct(String productName, Product updatedProduct) {
         for (int i = 0; i < productData.size(); i++) {
             if (productData.get(i).getProductName().equals(productName)) {
-                // Temukan produk yang akan diperbarui dan perbarui propertinya
                 Product existingProduct = productData.get(i);
                 existingProduct.setProductName(updatedProduct.getProductName());
                 existingProduct.setProductQuantity(updatedProduct.getProductQuantity());
@@ -49,7 +48,7 @@ public class ProductRepository {
             }
         }
 
-        // Jika produk tidak ditemukan, Anda bisa melempar exception atau mengembalikan null
+
         return null;
     }
 
