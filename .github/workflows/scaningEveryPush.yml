@@ -1,0 +1,21 @@
+name: Code Scanning on Every Push
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  sonarcloud-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.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}}
+          SONAR_TOKEN: ${{ secrets.adproasik }}
+

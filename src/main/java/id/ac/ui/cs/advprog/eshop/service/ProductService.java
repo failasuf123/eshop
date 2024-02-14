@@ -15,4 +15,6 @@ public interface ProductService {
     public void delete(String productName);
 
     public Product update(String productId, Product updatedProduct);
+
+//    public void performAdditionalAction(String productName);
 }
