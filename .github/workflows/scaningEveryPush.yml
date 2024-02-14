@@ -18,5 +18,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.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}}
           SONAR_TOKEN: ${{ secrets.adproasik }}
-        with:
-          organization: 'failasuf123'
+
