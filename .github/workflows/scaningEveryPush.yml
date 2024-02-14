@@ -53,7 +53,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=failasuf123
-            -Dsonar.projectKey=eshop
+            -Dsonar.projectKey=failasuf123_eshop
             -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.sources=lib/
             -Dsonar.test.exclusions=tests/**
