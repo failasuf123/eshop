@@ -3,8 +3,8 @@ name: SonarCloud
 on:
   push:
     branches:
-      - master
-      - module-2-exercise
+      - '*'
+
   pull_request:
     types: [opened, synchronize, reopened]
 
