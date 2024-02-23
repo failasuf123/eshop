@@ -133,7 +133,7 @@ class CarController extends ProductController {
         System.out.println(car.getCarId());
         carservice.update(car.getCarId(), car);
 
-        return "reditect:listCar";
+        return "redirect:listCar";
     }
 
     @PostMapping("/deleteCar")

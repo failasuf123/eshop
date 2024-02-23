@@ -67,7 +67,7 @@ class ProductControllerTest {
     void testDelete() {
         String productName = "SampleProduct";
 
-        productController.delete(productName);
+        productController.deleteProduct(productName);
 
         verify(productService, times(1)).delete(productName);
     }
