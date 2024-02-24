@@ -86,16 +86,24 @@ Penerapan Prinsip SOLID dalam Proyek Kita
 Dalam pengembangan proyek ini, kita menerapkan prinsip SOLID. SOLID merupakan singkatan dari lima prinsip desain perangkat lunak yang penting untuk menghasilkan kode yang bersih, modular, dan mudah dipelihara. Kelima prinsip tersebut adalah:
 
 S (Single Responsibility Principle): Setiap kelas, modul, atau fungsi harus memiliki satu dan hanya satu tanggung jawab yang spesifik.
+
 O (Open-Closed Principle): Perangkat lunak harus terbuka untuk perluasan fungsionalitas baru tanpa harus mengubah kode yang sudah ada.
+
 L (Liskov Substitution Principle): Subkelas harus dapat menggantikan superkelasnya dalam semua konteks tanpa mengubah perilaku program yang benar.
+
 I (Interface Segregation Principle): Antarmuka harus kecil dan fokus pada tanggung jawab tertentu. Hindari antarmuka yang terlalu besar dan berisi fungsi yang tidak berhubungan.
+
 D (Dependency Inversion Principle): Modul tingkat tinggi tidak boleh bergantung pada modul tingkat rendah. Keduanya harus bergantung pada abstraksi (seperti interface).
+
+
 2) Keuntungan Menerapkan Prinsip SOLID:
 
 Penerapan prinsip SOLID menawarkan beberapa keuntungan untuk proyek kita:
 
 Keuntungan 1: Kode lebih mudah dipahami dan dipelihara: Dengan membagi kode menjadi modul-modul yang lebih kecil dan fokus, struktur dan logika program menjadi lebih jelas. Ini memudahkan kita untuk memahami kode dan membuat perubahan tanpa risiko merusak bagian lain.
+
 Keuntungan 2: Kode lebih fleksibel dan dapat diperluas: Prinsip SOLID mendorong penggunaan abstraksi dan decoupling antar modul. Hal ini memudahkan kita untuk menambahkan fitur baru tanpa harus mengubah banyak kode yang sudah ada.
+
 Keuntungan 3: Kode lebih mudah diuji: Modul yang fokus pada tanggung jawab tunggal lebih mudah diuji secara independen. Ini membantu memastikan kualitas dan keandalan kode keseluruhan.
 Contoh: Bayangkan kita sedang mengembangkan aplikasi e-commerce. Menggunakan prinsip SRP, kita dapat membuat kelas terpisah untuk mengelola produk, keranjang belanja, dan transaksi. Ini membuat kode lebih modular dan mudah dipahami. Prinsip OCP memungkinkan kita menambahkan fitur baru seperti kupon diskon tanpa mengubah logika keranjang belanja. Prinsip LSP memastikan bahwa subkelas produk baru dapat digunakan dengan aman di sistem pembayaran. Prinsip ISP mendorong kita membuat antarmuka terpisah untuk checkout dan manajemen produk, sehingga kode menjadi lebih jelas dan mudah diubah.
 
