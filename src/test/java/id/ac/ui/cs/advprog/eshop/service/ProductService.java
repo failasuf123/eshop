@@ -65,13 +65,21 @@ class ProductServiceImplTest {
         verify(productRepository, times(1)).findByName(productName);
     }
 
+//    @Test
+//    void testDeleteProduct() {
+//        String productName = "SampleProduct";
+//
+//        productService.delete(productName);
+//
+//        verify(productRepository, times(1)).delete(productName);
+//    }
     @Test
     void testDeleteProduct() {
-        String productName = "SampleProduct";
+        String productId = "SampleProduct";  // Ganti dengan ID yang sesuai jika diperlukan
 
-        productService.delete(productName);
+        productService.deleteProductById(productId);
 
-        verify(productRepository, times(1)).delete(productName);
+        verify(productRepository, times(1)).delete(productId);
     }
 
     @Test
