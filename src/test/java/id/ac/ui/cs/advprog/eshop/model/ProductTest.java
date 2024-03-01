@@ -90,6 +90,7 @@ class OrderTest{
                 this.products, 1708560000L, "Safira Sudrajat",
                 OrderStatus.SUCCESS.getValue());
         assertEquals(OrderStatus.SUCCESS.getValue(), order.getStatus());
+
     }
     @Test
     void testCreateOrderInvalidStatus(){
