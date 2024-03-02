@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,18 +11,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class OrderRepositoryTest {
     OrderRepository orderRepository;
     List<Order> orders;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         orderRepository = new OrderRepository();
 
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
-        product1.setProductId("");
-        product1.setProductName("");
+        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(2);
         products.add(product1);
 
@@ -54,7 +56,7 @@ public class OrderRepositoryTest {
     void testSaveUpdate(){
         Order order = orders.get(1);
         orderRepository.save(order);
-        Order newOrder = new Order(order.getId(), order.getProduct(), order.getOrderTIme(),
+        Order newOrder = new Order(order.getId(), order.getProducts(), order.getOrderTime(),
                 order.getAuthor(), OrderStatus.SUCCESS.getValue());
         Order result = orderRepository.save(newOrder);
 
@@ -74,7 +76,7 @@ public class OrderRepositoryTest {
 
         Order findResult = orderRepository.findById(orders.get(1).getId());
         assertEquals(orders.get(1).getId(), findResult.getId());
-        assertEquals(orders.get(1).getOrderTime(), findResult.getOrderTime()));
+        assertEquals(orders.get(1).getOrderTime(), findResult.getOrderTime());
         assertEquals(orders.get(1).getAuthor(), findResult.getAuthor());
         assertEquals(orders.get(1).getStatus(), findResult.getStatus());
     }
