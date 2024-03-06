@@ -109,3 +109,19 @@ Masalah 3: Kode lebih sulit diuji: Modul yang tidak fokus pada tanggung jawab tu
 Contoh: Misalkan kita memiliki aplikasi sederhana untuk mengelola daftar tugas. Tanpa prinsip SRP, kita mungkin membuat satu kelas yang menangani semua hal terkait tugas, seperti menambahkan, menghapus, dan menandai sebagai selesai. Hal ini membuat kode sulit dipahami dan diubah. Jika kita ingin menambahkan fitur baru seperti pengingat, kita harus mengubah banyak bagian kode, meningkatkan risiko bug dan regresi. Selain itu, menguji fungsionalitas tugas secara independen menjadi sulit.
 
 Dengan menerapkan prinsip SOLID, kita dapat mengembangkan kode yang lebih bersih, modular, dan mudah dipelihara. Ini akan menghemat waktu dan tenaga kita dalam jangka panjang, serta membuat kode kita lebih siap untuk perubahan dan perbaikan di masa depan.
+
+
+# Excercise 4
+- Apakah bagi saya TTD ini berguna?
+### 1 jawab
+yaa saya merasa bahwa TTD ini sangat berguna karena kita akan menuliskan terlebih dahulu sebelum mengimlpment kode nya sehingg adakan memberikan fokus pada desain interface dan behaviour dari code yang saya buat ini akan memberikan kemampuan memahami dan mengerjakan
+yang lebih baik tanpa takut terjadi suatu hal yang terlewat dan mencegah ketidak tahuan terjadinya eror ketika kita melakukan update kode
+
+
+### 2 Refleksi FIRST
+Prinsip ini menjadi panduan yang penting di dalam usnit test, dalam pengalaman saya apabila disesuai kan dengan FIRST adalah sebagai berikut
+- Fast : tesnya dapat berjalan cepat dan memberikan umpan balik segera setelah dijalnkan
+- Independent : tesnya berdiri sendiri artinya tidak mempengaruhi test yang lain
+- Repeatable : Dapat dijalankan berulang kali
+- Self Validation : Saya dapt meliha apakah fungsionalitasny sudah baik hanya dari test tersebut
+- Timely : Saya dapat melakukanya sangat cepet 
