@@ -32,8 +32,6 @@ public class PaymentServiceImpl implements PaymentService {
 
 
     private String generateUniquePaymentId() {
-        // Implementation to generate a unique payment ID
-        // This could be a UUID or any other logic based on your application's requirements
         return "PAYMENT_" + System.currentTimeMillis();
     }
 

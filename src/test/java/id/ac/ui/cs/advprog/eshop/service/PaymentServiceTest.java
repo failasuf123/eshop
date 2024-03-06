@@ -38,7 +38,6 @@ public class PaymentServiceTest {
 
     List<Payment> payments;
 
-    private Order mockOrder;
     private Map<String, String> mockPaymentData;
 
     @BeforeEach
@@ -72,7 +71,6 @@ public class PaymentServiceTest {
         payments.add(payment1);
         payments.add(payment2);
 
-        // Inisialisasi paymentRepository dan setPaymentData
         paymentRepository = new PaymentRepository();
         paymentRepository.save(payment1);
         paymentRepository.save(payment2);
@@ -98,36 +96,27 @@ public class PaymentServiceTest {
         Payment payment = payments.get(0);
         String newStatus = "SUCCESS";
 
-        // Act
         Payment updatedPayment = paymentService.setStatus(payment, newStatus);
 
-        // Assert
         assertEquals(newStatus, updatedPayment.getStatus());
         verify(orderService, times(1)).updateStatus(payment.getId(), newStatus);
     }
 
     @Test
     void testSetStatusRejected() {
-        // Arrange
         Payment payment = payments.get(0);
         String newStatus = "REJECTED";
 
-        // Act
         Payment updatedPayment = paymentService.setStatus(payment, newStatus);
 
-        // Assert
         assertEquals(newStatus, updatedPayment.getStatus());
         verify(orderService, times(1)).updateStatus(payment.getId(), newStatus);
     }
 
     @Test
     public void testGetAllPayments() {
-        // Arrange (already set up in @BeforeEach)
-
-        // Act
         List<Payment> allPayments = paymentService.getAllPayments();
 
-        // Assert
         assertEquals(payments.size(), allPayments.size());
         for (int i = 0; i < payments.size(); i++) {
             assertEquals(payments.get(i).getId(), allPayments.get(i).getId());
@@ -136,26 +125,20 @@ public class PaymentServiceTest {
 
     @Test
     public void testGetPaymentExisting() {
-        // Arrange
         String existingPaymentId = payments.get(0).getId();
 
-        // Act
         Payment retrievedPayment = paymentService.getPayment(existingPaymentId);
 
-        // Assert
         assertNotNull(retrievedPayment);
         assertEquals(existingPaymentId, retrievedPayment.getId());
     }
 
     @Test
     public void testGetPaymentNonexistent() {
-        // Arrange
         String nonexistentId = "non-existent-id";
 
-        // Act
         Payment retrievedPayment = paymentService.getPayment(nonexistentId);
 
-        // Assert
         assertNull(retrievedPayment);
     }
 
