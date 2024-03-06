@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
@@ -63,17 +64,28 @@ class ProductControllerTest {
         verify(model, times(1)).addAttribute("products", productList);
     }
 
+//    @Test
+//    void testDelete() {
+//        String productName = "SampleProduct";
+//
+//        productController.deleteProduct(productName);
+//
+//        verify(productService, times(1)).delete(productName);
+//    }
+
     @Test
     void testDelete() {
-        String productName = "SampleProduct";
+        String productId = "SampleProduct";
 
-        productController.deleteProduct(productName);
+        productController.deleteProduct(productId);  // Gunakan productId sebagai argumen
 
-        verify(productService, times(1)).delete(productName);
+        // Verifikasi bahwa service dipanggil dengan ID yang benar
+        verify(productService, times(1)).deleteProductById(productId);  // Sesuaikan dengan nama metode service
     }
 
 
-@Test
+
+    @Test
 void testEditProductPage_ProductNotFound() {
     String productName = "NonExistentProduct";
     when(productService.findByName(productName)).thenReturn(null);
@@ -100,14 +112,47 @@ void testEditProductPage_ProductNotFound() {
     }
 
 
+//    @Test
+//    void testEditProductPost() {
+//        productId = "SampleProduct";
+//        Product updatedProduct = new Product();
+//
+////        String viewName = productController.editProductPost(productName, updatedProduct);
+//
+//        String viewName = productController.editProductPost(productId);
+//        verify(productService, times(1)).update(productName, updatedProduct);
+//        assertEquals("redirect:/product/list", viewName);
+//    }
+
     @Test
     void testEditProductPost() {
-        String productName = "SampleProduct";
+        String productId = "SampleProduct";
+        // Populate updatedProduct with necessary fields
         Product updatedProduct = new Product();
+        updatedProduct.setProductId(productId);
+        // ... set other fields as needed
 
-        String viewName = productController.editProductPost(productName, updatedProduct);
 
-        verify(productService, times(1)).update(productName, updatedProduct);
-        assertEquals("redirect:/product/list", viewName);
+
+        // Pass the updatedProduct object as the model attribute
+        Model model = new ExtendedModelMap(); // Or any appropriate Model implementation
+        model.addAttribute("product", updatedProduct);
+
+        Product product = new Product();
+        product.setProductId(productId);
+
+        String viewName = productController.editProductPost(product, model);
+
+
+//        String viewName = productController.editProductPost(productId, model);
+
+        // Verify that the service is called with correct arguments
+        verify(productService, times(1)).update(productId, updatedProduct);
+
+        // Verify the expected redirect view
+        assertEquals("redirect:list", viewName);
     }
+
+
+
 }
