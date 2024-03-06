@@ -21,7 +21,7 @@ class PaymentRepositoryTest {
     @BeforeEach
     void setUp() {
         orderRepository = new OrderRepository();
-        payments = new ArrayList<>();  // Inisialisasi list payments
+        payments = new ArrayList<>();
 
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
@@ -44,7 +44,7 @@ class PaymentRepositoryTest {
         payments.add(payment1);
         payments.add(payment2);
 
-        // Inisialisasi paymentRepository dan setPaymentData
+
         paymentRepository = new PaymentRepository();
         paymentRepository.save(payment1);
         paymentRepository.save(payment2);
