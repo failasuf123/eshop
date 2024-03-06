@@ -27,7 +27,7 @@ public class OrderServiceTest {
     List<Order> orders;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
@@ -35,7 +35,6 @@ public class OrderServiceTest {
         product1.setProductQuantity(2);
         products.add(product1);
 
-        orders = new ArrayList<>();
         orders = new ArrayList<>();
         Order order1 = new Order("13652556-012a-4c07-b546-54eb1396d79b",
                 products, 1708560000L, "Safira Sudrajat");
@@ -47,7 +46,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    void testCreateOrder(){
+    void testCreateOrder() {
         Order order = orders.get(1);
         doReturn(order).when(orderRepository).save(order);
 
@@ -57,16 +56,17 @@ public class OrderServiceTest {
     }
 
     @Test
-    void testCreateOrderIfAlreadyExists(){
+    void testCreateOrderIfAlreadyExists() {
         Order order = orders.get(1);
         doReturn(order).when(orderRepository).findById(order.getId());
 
         assertNull(orderService.createOrder(order));
         verify(orderRepository, times(0)).save(order);
     }
+
     @Test
-    void testUpdateStatus(){
-        Order order =  orders.get(1);
+    void testUpdateStatus() {
+        Order order = orders.get(1);
         Order newOrder = new Order(order.getId(), order.getProducts(), order.getOrderTime(),
                 order.getAuthor(), OrderStatus.SUCCESS.getValue());
         doReturn(order).when(orderRepository).findById(order.getId());
@@ -80,7 +80,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    void testUpdateStatusInvalidStatus(){
+    void testUpdateStatusInvalidStatus() {
         Order order = orders.get(1);
         doReturn(order).when(orderRepository).findById(order.getId());
 
@@ -90,7 +90,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    void testUpdateStatusInvalidOrderId(){
+    void testUpdateStatusInvalidOrderId() {
         doReturn(null).when(orderRepository).findById("zczc");
 
         assertThrows(NoSuchElementException.class,
@@ -100,7 +100,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    void testFindByIdIfIdFound(){
+    void testFindByIdIfIdFound() {
         Order order = orders.get(1);
         doReturn(order).when(orderRepository).findById(order.getId());
 
@@ -109,13 +109,13 @@ public class OrderServiceTest {
     }
 
     @Test
-    void testFindByIdNoteFound(){
+    void testFindByIdNoteFound() {
         doReturn(null).when(orderRepository).findById("zczc");
         assertNull(orderService.findById("zczc"));
     }
 
     @Test
-    void testFindAllByAuthorIfAuthorCorrect(){
+    void testFindAllByAuthorIfAuthorCorrect() {
         Order order = orders.get(1);
         doReturn(orders).when(orderRepository).findAllByAuthor(order.getAuthor());
 
@@ -123,7 +123,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    void testFindAllByAuthorIfAllLowercase(){
+    void testFindAllByAuthorIfAllLowercase() {
         Order order = orders.get(1);
         doReturn(new ArrayList<Order>()).when(orderRepository)
                 .findAllByAuthor(order.getAuthor().toLowerCase());
@@ -133,38 +133,5 @@ public class OrderServiceTest {
         assertTrue(result.isEmpty());
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

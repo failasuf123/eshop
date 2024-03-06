@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -117,4 +119,84 @@ class OrderTest{
     }
 
 }
+
+
+
+class PaymentTest {
+
+    private List<Product> products;
+    private Order order;
+
+    @BeforeEach
+    void setUp() {
+        this.products = new ArrayList<>();
+        Product product3 = new Product();
+        product3.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product3.setProductName("Sampo Cap Bambang");
+        product3.setProductQuantity(2);
+
+        this.products.add(product3);
+        this.order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+                this.products, 1708560000L, "Safira Sudrajat");
+    }
+
+    @Test
+    void testAddWithValidData() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("key", "value");
+
+        Payment payment = new Payment("123-qweasd-zxczxc", order, "method", paymentData);
+
+        assertEquals("123-qweasd-zxczxc", payment.getId());
+        assertEquals("method", payment.getMethod());
+        assertEquals(order, payment.getOrder());
+        assertEquals(paymentData, payment.getPaymentData());
+    }
+
+    @Test
+    void testAddValidDataAndStatus() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("key", "value");
+
+        Payment payment = new Payment("123-qweasd-zxczxc", order,"method",
+                "SUCCESS",  paymentData);
+
+        assertEquals("123-qweasd-zxczxc", payment.getId());
+        assertEquals("method", payment.getMethod());
+        assertEquals(order, payment.getOrder());
+        assertEquals("SUCCESS", payment.getStatus());
+        assertEquals(paymentData, payment.getPaymentData());
+
+    }
+
+    @Test
+    void testAddInvalidData() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Payment("paymentId", order, "", null);
+        });
+    }
+
+    @Test
+    void testInvalidStatus(){
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("key", "value");
+        Payment payment = new Payment("123-qweasd-zxczxc", order,"method",
+                "OKEGAS",  paymentData);
+
+        assertThrows(IllegalArgumentException.class, () -> payment.setStatus("OKEGAS"));
+    }
+
+    @Test
+    void testSetMethod() {
+        Map<String, String> paymentData = new HashMap<>();
+        paymentData.put("key", "value");
+
+        Payment payment = new Payment("paymentId", order, "method", paymentData);
+        payment.setMethod("newMethod");
+
+        assertEquals("newMethod", payment.getMethod());
+    }
+}
+
+
 
